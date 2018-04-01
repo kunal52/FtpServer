@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="anonymous_login"
+        android:summary="No Username and Password Needed For Login"
+        android:title="Anonymous Login" />
+
+    <Preference
+        android:dependency="anonymous_login"
+        android:key="anonymous_path_to_share"
+        android:defaultValue="/storage/emulated/0/"
+        android:title="Path to share"
+        android:summary="/storage/emulated/0/"/>
+
+    <CheckBoxPreference
+        android:defaultValue="false"
+        android:dependency="anonymous_login"
+        android:key="write_anonymous"
+        android:title="Write Enable" />
+    <ListPreference
+        android:defaultValue="0"
+        android:dependency="anonymous_login"
+        android:entries="@array/up_dw_speed_entries"
+        android:entryValues="@array/up_dw_speed_values"
+        android:key="anonymous_up_speedlimit"
+        android:summary="%s"
+        android:title="Upload Speed Limit" />
+    <ListPreference
+        android:defaultValue="0"
+        android:dependency="anonymous_login"
+        android:entries="@array/up_dw_speed_entries"
+        android:entryValues="@array/up_dw_speed_values"
+        android:key="anonymous_down_speedlimit"
+        android:summary="%s"
+        android:title="Download Speed Limit" />
+    <ListPreference
+        android:defaultValue="1"
+        android:dependency="anonymous_login"
+        android:entries="@array/max_no_connections"
+        android:entryValues="@array/max_no_connections"
+        android:key="anonymous_max_connection"
+        android:summary="%s"
+        android:title="Max Connection" />
+    <ListPreference
+        android:defaultValue="1"
+        android:dependency="anonymous_login"
+        android:entries="@array/max_no_sim_connections"
+        android:entryValues="@array/max_no_sim_connections"
+        android:key="anonymous_max_sim_conenction"
+        android:summary="%s"
+        android:title="Max Connection per IP" />
+
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="admin_login"
+        android:summary="Username is admin"
+        android:title="Admin Login" />
+    <EditTextPreference
+        android:inputType="textPassword"
+        android:defaultValue="admin"
+        android:dependency="admin_login"
+        android:key="admin_password"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="Password" />
+    <CheckBoxPreference
+        android:defaultValue="true"
+        android:dependency="admin_login"
+        android:key="admin_write"
+        android:title="Write Enable" />
+
+    <Preference
+        android:key="admin_path_to_share"
+        android:defaultValue="/storage/emulated/0/"
+        android:title="Path to share"
+        android:summary="/storage/emulated/0/"
+        android:dependency="admin_login"/>
+
+    <ListPreference
+        android:defaultValue="0"
+        android:dependency="admin_login"
+        android:entries="@array/up_dw_speed_entries"
+        android:entryValues="@array/up_dw_speed_values"
+        android:key="admin_up_max_speed"
+        android:summary="%s"
+        android:title="Upload Speed Limit" />
+    <ListPreference
+        android:defaultValue="0"
+        android:dependency="admin_login"
+        android:entries="@array/up_dw_speed_entries"
+        android:entryValues="@array/up_dw_speed_values"
+        android:key="admin_down_speed_limit"
+        android:title="Download Speed Limit"
+        android:summary="%s" />
+    <ListPreference
+        android:defaultValue="1"
+        android:dependency="admin_login"
+        android:entries="@array/max_no_connections"
+        android:entryValues="@array/max_no_connections"
+        android:key="admin_max_connection"
+        android:title="Max Connection"
+        android:summary="%s"/>
+    <ListPreference android:defaultValue="1"
+        android:dependency="admin_login"
+        android:entries="@array/max_no_sim_connections"
+        android:entryValues="@array/max_no_sim_connections"
+        android:key="admin_max_ip_connection"
+        android:title="Max Connection Per IP"
+        android:summary="%s"/>
+
+    <Preference android:title="How To Use">
+        <intent android:targetPackage="com.techweblearn.www.ftpserver"
+            android:targetClass="com.techweblearn.www.ftpserver.HowToUse"/>
+    </Preference>
+
+    <Preference android:title="About">
+        <intent android:targetPackage="com.techweblearn.www.ftpserver"
+            android:targetClass="com.techweblearn.www.ftpserver.about"/>
+    </Preference>
+
+
+
+</PreferenceScreen>

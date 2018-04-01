@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/primaryText"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootlayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.techweblearn.www.ftpserver.Activity.MainActivity">
+
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/router_animation"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+
+        app:lottie_fileName="micro_interaction_router.json"
+        app:lottie_loop="true" />
+
+    <Button
+
+        android:layout_margin="20dp"
+        android:id="@+id/ftpcontrol"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ftpaddress"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/startstopbuttondrawable"
+        android:text="Start FTP"
+        android:textColor="@color/primaryText"
+        android:textSize="20sp" />
+
+    <LinearLayout
+        android:layout_centerHorizontal="true"
+        android:paddingBottom="16dp"
+        android:paddingRight="16dp"
+        android:paddingLeft="16dp"
+        android:layout_above="@id/ftpaddress"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:textSize="18sp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:text="Only Mobile Data Mode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <android.support.v7.widget.SwitchCompat
+            android:layout_marginLeft="16dp"
+            android:id="@+id/switch_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+
+
+    <TextView
+
+        android:textAlignment="center"
+        android:background="@drawable/startstopbuttondrawable"
+        android:id="@+id/ftpaddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="Hello World!"
+        android:textColor="@color/primaryText"
+        android:textIsSelectable="true"
+        android:textSize="20sp" />
+
+    <Button
+
+        android:textColor="@color/primaryText"
+        android:textSize="20sp"
+        android:layout_margin="20dp"
+        android:id="@+id/setting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ftpcontrol"
+        android:background="@drawable/startstopbuttondrawable"
+        android:text="Setting" />
+
+    <com.google.android.gms.ads.AdView
+
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        ads:adSize="SMART_BANNER"
+        ads:adUnitId="@string/bannerTestAd"/>
+
+
+</RelativeLayout>

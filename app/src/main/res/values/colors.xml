@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#0be57c</color>
+    <color name="colorPrimaryDark">#00b14e</color>
+    <color name="colorPrimaryLight">#67ffac</color>
+    <color name="colorSecondry">#ce93d8</color>
+    <color name="colorSecondryDark">#9c64a6</color>
+    <color name="colorSecondryLight">#ffc4ff</color>
+    <color name="colorAccent">#0be57c</color>
+    <color name="primaryText">#ffffff</color>
+    <color name="secondryText">#000000</color>
+
+<!--    <color name="colorPrimary">#ab47bc</color>
+    <color name="colorPrimaryDark">#790e8b</color>
+    <color name="colorPrimaryLight">#790e8b</color>
+    <color name="colorSecondry">#ce93d8</color>
+    <color name="colorSecondryDark">#9c64a6</color>
+    <color name="colorSecondryLight">#ffc4ff</color>
+    <color name="colorAccent">#9c64a6</color>
+    <color name="primaryText">#ffffff</color>
+    <color name="secondryText">#000000</color>-->
+</resources>

@@ -1,0 +1,77 @@
+<resources>
+    <string name="app_name">Speed Ftp Server</string>
+    <string name="title_activity_settings">Settings</string>
+
+
+    <string name="App_Id">ca-app-pub-1343309596406849~6415670740</string>
+    <string name="interstetialAdId">ca-app-pub-1343309596406849/6084498256</string>
+    <string name="bannerAdId">ca-app-pub-1343309596406849/9317467574</string>
+    <string name="bannerTestAd">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="interstialTestAd">ca-app-pub-3940256099942544/1033173712</string>
+    <string-array name="up_dw_speed_entries">
+        <item>MAX</item>
+        <item>100 KBps</item>
+        <item>200 KBps</item>
+        <item>500 KBps</item>
+        <item>  1 MBps</item>
+        <item>  2 MBps</item>
+        <item>  5 MBps</item>
+        <item> 10 MBps</item>
+    </string-array>
+
+    <string-array name="up_dw_speed_values">
+        <item>0</item>
+        <item>102400</item>
+        <item>204800</item>
+        <item>512000</item>
+        <item>1024000</item>
+        <item>2048000</item>
+        <item>5120000</item>
+        <item>10240000</item>
+    </string-array>
+
+
+    <string-array name="max_no_connections">
+        <item>1</item>
+        <item>2</item>
+        <item>4</item>
+        <item>8</item>
+        <item>16</item>
+        <item>32</item>
+    </string-array>
+
+    <string-array name="max_no_sim_connections">
+        <item>1</item>
+        <item>2</item>
+        <item>4</item>
+        <item>8</item>
+        <item>16</item>
+    </string-array>
+
+
+    <string name="app_description">Send Files between Pc, Smartphone easily using Speed Ftp Server.</string>
+    <string name="how_to_use">How to use-:\n\n
+
+***Using WiFi***\n
+
+1. Connect to WiFi.\n
+2. Turn on Ftp\n
+3. Connect other devices with wifi which your phone is connected.\n
+4. Open address in browser which shown in Ftp App or Use any ftp client app or software for PC and Smartphone\n
+5. Copy , Send Files.\n\n
+
+*** Using WiFi Hotspot***\n
+
+1. Create Hotspot\n
+2. Open Speed Ftp Server\n
+3. Turn on Ftp\n
+4. Connect devices to your WiFi hotspot\n
+5. Open address in browser which shown in Ftp App or Use any ftp client app or software for PC and Smartphone\n
+6. Copy , Send Files.\n\n
+        ***How To Send Files To Phone***\n
+
+        1. Open MyComputer/This Pc/File Explorer in Windows Pc.\n
+        2. Type the Address in Address Bar near the Search Option of Explorer\n
+        3. Hit Enter
+    </string>
+</resources>

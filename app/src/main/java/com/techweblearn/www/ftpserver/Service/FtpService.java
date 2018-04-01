@@ -59,7 +59,9 @@ public class FtpService extends Service {
             notificationManager.createNotificationChannel(channel);
         }
 
-        factory.setPort(2438);
+
+
+        factory.setPort(Utils.ChangeSettings.getPortNumber(this));
         serverFactory.addListener("default", factory.createListener());
         userproperties =new File("/data/user/0/com.techweblearn.www.ftpserver/cache","users.properties");
         userManagerFactory.setFile(userproperties);

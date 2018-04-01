@@ -6,8 +6,8 @@ android {
         applicationId "com.techweblearn.www.ftpserver"
         minSdkVersion 21
         targetSdkVersion 26
-        versionCode 10
-        versionName "1.0"
+        versionCode 11
+        versionName "2.0.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -41,10 +41,10 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
-    compile 'com.github.medyo:android-about-page:1.2.1'
-    compile 'com.google.firebase:firebase-ads:11.6.0'
-    compile 'com.github.codekidX:storage-chooser:2.0.3'
-    compile 'com.airbnb.android:lottie:2.3.0'
+    implementation 'com.github.medyo:android-about-page:1.2.1'
+    implementation 'com.google.firebase:firebase-ads:11.6.0'
+    implementation 'com.github.codekidX:storage-chooser:2.0.3'
+    implementation 'com.airbnb.android:lottie:2.3.0'
     //JAR Files
 
     implementation files('libs/ftplet-api-1.1.1.jar')

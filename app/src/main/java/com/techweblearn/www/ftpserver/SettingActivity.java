@@ -2,6 +2,7 @@ package com.techweblearn.www.ftpserver;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.EditTextPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
@@ -9,6 +10,8 @@ import android.preference.PreferenceManager;
 import android.widget.Toast;
 
 import com.codekidlabs.storagechooser.StorageChooser;
+
+import java.util.Map;
 
 
 /**
@@ -61,7 +64,7 @@ public class SettingActivity extends PreferenceActivity {
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
 
-            Toast.makeText(getActivity(),"Stop Start FTP To See Changes",Toast.LENGTH_SHORT).show();
+
             switch (key)
             {
                 case "anonymous_login":
@@ -152,7 +155,26 @@ public class SettingActivity extends PreferenceActivity {
                     String admin_max_ip_connection=sharedPreferences.getString("admin_max_ip_connection","4");
                     Utils.ChangeSettings.changeAdminMaxConnectionPerIp(admin_max_ip_connection);
                     break;
+
+                case "port_no":
+                    String port_no=sharedPreferences.getString("port_no","2345");
+                    if(!Utils.ChangeSettings.isPortInRange(Integer.parseInt(port_no)))
+                    {
+                        Toast.makeText(getActivity(),"Port No is not in Between 1023-65535",Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity(),"Default Port 2345 is Used",Toast.LENGTH_LONG).show();
+                        PreferenceManager.getDefaultSharedPreferences(getActivity()).edit().putString(key,"2345").apply();
+                        port_no="2345";
+                    }
+
+                    Map<String, ?> preferencesMap = sharedPreferences.getAll();
+                    Object changedPreference = preferencesMap.get(key);
+                    if (preferencesMap.get(key) instanceof EditTextPreference) {
+                        upDatePreferenceSummary((EditTextPreference) changedPreference,port_no);
+                    }
+
             }
+
+            Toast.makeText(getActivity(),"Stop Start FTP To See Changes",Toast.LENGTH_SHORT).show();
         }
 
         @Override
@@ -208,5 +230,13 @@ public class SettingActivity extends PreferenceActivity {
             return false;
         }
     }
+
+
+    private static void upDatePreferenceSummary(EditTextPreference preference,String s)
+    {
+        preference.setSummary(s);
+        preference.setText(s);
+    }
+
 
 }

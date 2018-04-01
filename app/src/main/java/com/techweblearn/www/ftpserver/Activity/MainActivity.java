@@ -46,7 +46,6 @@ public class MainActivity extends AppCompatActivity implements MainActivityViewI
     Button ftpstartstop;
     MainActivityPresenterInterface mainActivityPresenter;
     LottieAnimationView router_animation;
-    SwitchCompat switchCompat;
     Snackbar snackbar;
 
     private InterstitialAd mInterstitialAd;
@@ -59,7 +58,6 @@ public class MainActivity extends AppCompatActivity implements MainActivityViewI
         ftpstartstop = findViewById(R.id.ftpcontrol);
         relativeLayout = findViewById(R.id.rootlayout);
         router_animation=findViewById(R.id.router_animation);
-        switchCompat=findViewById(R.id.switch_button);
         adView = findViewById(R.id.adView);
         router_animation.setProgress(0f);
 
@@ -88,9 +86,6 @@ public class MainActivity extends AppCompatActivity implements MainActivityViewI
         });
 
         ftpstartstop.setOnClickListener(this);
-        switchCompat.setChecked(PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getBoolean("isMobile",false));
-        switchCompat.setOnCheckedChangeListener(this);
-
         Utils.requestPermission(this);
         mainActivityPresenter = new MainActivityPresenter(this, this);
         mainActivityPresenter.checkFtpIsRunning();
@@ -107,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityViewI
         }
 
 
-        if(PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getBoolean("isMobile",false))
+       /* if(PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getBoolean("isMobile",false))
         {
             mainActivityPresenter.onftpStartStop();
             snackbar=Snackbar.make(relativeLayout, "Ftp is enable Go to About in Setting To see the IP", Snackbar.LENGTH_INDEFINITE)
@@ -122,7 +117,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityViewI
 
             return;
 
-        }
+        }*/
 
         if (Utils.isWifiApEnable(MainActivity.this)||Utils.isWifiEnable(MainActivity.this)) {
             Log.d("Kunal","Is Service Running");
@@ -146,7 +141,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityViewI
     public void ftpServerStarted() {
 
         try {
-            ftpaddress.setText("  ftp://" + Utils.getInetAddressFromString(runAsRoot()).trim() + ":2438  ");
+            ftpaddress.setText("  ftp://" + Utils.getInetAddressFromString(runAsRoot()).trim() + ":"+Utils.ChangeSettings.getPortNumber(this));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -176,8 +171,8 @@ public class MainActivity extends AppCompatActivity implements MainActivityViewI
         if (isRunning) {
             router_animation.playAnimation();
             try {
-                ftpaddress.setText("ftp://"+"YourIP"+":2438");
-                ftpaddress.setText("  ftp://" + Utils.getInetAddressFromString(runAsRoot()).trim() + ":2438  ");
+                ftpaddress.setText("ftp://"+"YourIP:"+Utils.ChangeSettings.getPortNumber(this));
+                ftpaddress.setText("  ftp://" + Utils.getInetAddressFromString(runAsRoot()).trim() +":"+Utils.ChangeSettings.getPortNumber(this));
             } catch (Exception e) {
                 e.printStackTrace();
             }

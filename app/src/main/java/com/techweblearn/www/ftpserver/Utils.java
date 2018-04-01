@@ -38,7 +38,7 @@ public class Utils {
 
 
 
-    static class ChangeSettings
+    public static class ChangeSettings
     {
 
         public static void enabledisableAnonymousUser(boolean b)
@@ -132,6 +132,19 @@ public class Utils {
         public static void changeAdminMaxConnectionPerIp(String connection)
         {
             replaceSettingData("admin.maxloginperip",connection);
+        }
+
+        public static boolean isPortInRange(int port)
+        {
+            if(port > 1023 && port < 65535)
+                return true;
+            return false;
+        }
+
+
+        public static int getPortNumber(Context context)
+        {
+            return Integer.parseInt(PreferenceManager.getDefaultSharedPreferences(context).getString("port_no", String.valueOf(2345)));
         }
 
 
@@ -287,7 +300,7 @@ public class Utils {
         try {
             method=wifiManager.getClass().getMethod("isWifiApEnabled");
             method.setAccessible(true);
-            return (boolean) method.invoke(wifiManager,null);
+            return (boolean) method.invoke(wifiManager, (Object) null);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -345,6 +358,8 @@ public class Utils {
         }
     }
 
+
+
     public static void requestPermission(Activity thisActivity)
     {
         if (ContextCompat.checkSelfPermission(thisActivity,
@@ -384,6 +399,9 @@ public class Utils {
 
 
     }
+
+
+
 
 
 }

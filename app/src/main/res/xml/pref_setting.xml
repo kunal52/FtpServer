@@ -103,6 +103,7 @@
         android:key="admin_max_connection"
         android:title="Max Connection"
         android:summary="%s"/>
+
     <ListPreference android:defaultValue="1"
         android:dependency="admin_login"
         android:entries="@array/max_no_sim_connections"
@@ -110,6 +111,14 @@
         android:key="admin_max_ip_connection"
         android:title="Max Connection Per IP"
         android:summary="%s"/>
+
+    <EditTextPreference
+        android:summary="Port no must in between 1023-65535"
+        android:maxLength="5"
+        android:singleLine="true"
+        android:key="port_no"
+        android:defaultValue="2345"
+        android:title="Port Use" />
 
     <Preference android:title="How To Use">
         <intent android:targetPackage="com.techweblearn.www.ftpserver"

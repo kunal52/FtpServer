@@ -52,6 +52,7 @@ public class FtpService extends Service {
 
 
 
+
         notificationManager= (NotificationManager) getSystemService(Service.NOTIFICATION_SERVICE);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel=new NotificationChannel(CHANNEL_ID,"Ftp Server",NotificationManager.IMPORTANCE_HIGH);
@@ -63,10 +64,18 @@ public class FtpService extends Service {
 
         factory.setPort(Utils.ChangeSettings.getPortNumber(this));
         serverFactory.addListener("default", factory.createListener());
+
+        factory.setImplicitSsl(true);
+
+
+
         userproperties =new File("/data/user/0/com.techweblearn.www.ftpserver/cache","users.properties");
         userManagerFactory.setFile(userproperties);
         serverFactory.setUserManager(userManagerFactory.createUserManager());
         ftpServer=serverFactory.createServer();
+
+
+
 
     }
 

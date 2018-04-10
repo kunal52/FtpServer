@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityViewI
         AdRequest adRequest = new AdRequest.Builder().build();
         adView.loadAd(adRequest);
         mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId(getResources().getString(R.string.interstialTestAd));
+        mInterstitialAd.setAdUnitId(getResources().getString(R.string.interstetialAdId));
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
         mInterstitialAd.setAdListener(new AdListener(){
             @Override

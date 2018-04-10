@@ -8,6 +8,7 @@
     <string name="bannerAdId">ca-app-pub-1343309596406849/9317467574</string>
     <string name="bannerTestAd">ca-app-pub-3940256099942544/6300978111</string>
     <string name="interstialTestAd">ca-app-pub-3940256099942544/1033173712</string>
+
     <string-array name="up_dw_speed_entries">
         <item>MAX</item>
         <item>100 KBps</item>

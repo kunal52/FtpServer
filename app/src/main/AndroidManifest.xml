@@ -33,6 +33,9 @@
 
         <activity android:name=".about" />
         <activity android:name=".HowToUse"></activity>
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="29779431572abe6af7e280299b4853895b796304" />
     </application>
 
 </manifest>

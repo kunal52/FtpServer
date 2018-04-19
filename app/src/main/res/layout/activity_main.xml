@@ -67,7 +67,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         ads:adSize="SMART_BANNER"
-        ads:adUnitId="@string/bannerAdId"/>
+        ads:adUnitId="@string/bannerTestAd"/>
 
 
 </RelativeLayout>

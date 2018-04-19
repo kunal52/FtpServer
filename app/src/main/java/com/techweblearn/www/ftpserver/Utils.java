@@ -297,12 +297,29 @@ public class Utils {
     {
         WifiManager wifiManager= (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         Method method;
+        Method method2;
         try {
             method=wifiManager.getClass().getMethod("isWifiApEnabled");
             method.setAccessible(true);
-            return (boolean) method.invoke(wifiManager, (Object) null);
+            return (boolean) method.invoke(wifiManager);
+
+
 
         } catch (Exception e) {
+
+            try {
+
+
+
+            method2 = wifiManager.getClass().getDeclaredMethod("getWifiApState");
+            method2.setAccessible(true);
+            int actualState = (Integer) method2.invoke(wifiManager, (Object[]) null);
+
+            if(actualState==13)
+                return true;
+
+            }
+            catch (Exception e1){}
             e.printStackTrace();
             return false;
         }
@@ -327,7 +344,7 @@ public class Utils {
     public static boolean isWifiEnable(Context context)
     {
         WifiManager wifiManager= (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-        if(wifiManager.isWifiEnabled())
+        if(wifiManager != null && wifiManager.isWifiEnabled())
             return true;
         else return false;
     }

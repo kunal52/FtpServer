@@ -39,6 +39,7 @@ public class FtpService extends Service {
     FtpServer ftpServer;
     NotificationManager notificationManager;
     String CHANNEL_ID = "my_channel_01";// The id of the channel.
+    int portNo=2345;
 
     public FtpService() {
 
@@ -54,15 +55,12 @@ public class FtpService extends Service {
 
 
         notificationManager= (NotificationManager) getSystemService(Service.NOTIFICATION_SERVICE);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel channel=new NotificationChannel(CHANNEL_ID,"Ftp Server",NotificationManager.IMPORTANCE_HIGH);
-
-            notificationManager.createNotificationChannel(channel);
-        }
 
 
 
-        factory.setPort(Utils.ChangeSettings.getPortNumber(this));
+
+        portNo=Utils.ChangeSettings.getPortNumber(this);
+        factory.setPort(portNo);
         serverFactory.addListener("default", factory.createListener());
 
         factory.setImplicitSsl(true);
@@ -73,7 +71,11 @@ public class FtpService extends Service {
         userManagerFactory.setFile(userproperties);
         serverFactory.setUserManager(userManagerFactory.createUserManager());
         ftpServer=serverFactory.createServer();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel=new NotificationChannel(CHANNEL_ID,"Ftp Server",NotificationManager.IMPORTANCE_HIGH);
 
+            notificationManager.createNotificationChannel(channel);
+        }
 
 
 
@@ -128,7 +130,7 @@ public class FtpService extends Service {
                             new NotificationCompat.Builder(this)
                                     .setSmallIcon(R.drawable.icon)  // the status icon// the status text// the time stamp
                                     .setContentTitle("FTP Server Started")  // the label of the entry
-                                    .setContentText("ftp://" + "Your IP" + ":2438")
+                                    .setContentText("ftp://" + "Your IP" + ":"+portNo)
                                     .setOngoing(true)
                                     .setContentIntent(contentIntent)
                                     .setChannelId(CHANNEL_ID).build();
@@ -140,7 +142,7 @@ public class FtpService extends Service {
                     notification = new Notification.Builder(this)
                             .setSmallIcon(R.drawable.icon)  // the status icon// the status text// the time stamp
                             .setContentTitle("FTP Server Started")  // the label of the entry
-                            .setContentText("ftp://" + "Your IP" + ":2438")
+                            .setContentText("ftp://" + "Your IP" + ":"+portNo)
                             .setOngoing(true)
                             .setContentIntent(contentIntent)  // The intent to send when the entry is clicked
                             .build();
@@ -152,7 +154,7 @@ public class FtpService extends Service {
                         new NotificationCompat.Builder(this)
                                 .setSmallIcon(R.drawable.icon)  // the status icon// the status text// the time stamp
                                 .setContentTitle("FTP Server Started")  // the label of the entry
-                                .setContentText("ftp://" + Utils.getInetAddressFromString(runAsRoot()).trim() + ":2438")
+                                .setContentText("ftp://" + Utils.getInetAddressFromString(runAsRoot()).trim() + ":"+portNo)
                                 .setOngoing(true)
                                 .setContentIntent(contentIntent)
                                 .setChannelId(CHANNEL_ID).build();
@@ -164,7 +166,7 @@ public class FtpService extends Service {
                  notification = new Notification.Builder(this)
                         .setSmallIcon(R.drawable.icon)  // the status icon// the status text// the time stamp
                         .setContentTitle("FTP Server Started")  // the label of the entry
-                        .setContentText("ftp://" + Utils.getInetAddressFromString(runAsRoot()).trim() + ":2438")
+                        .setContentText("ftp://" + Utils.getInetAddressFromString(runAsRoot()).trim() + ":"+portNo)
                         .setOngoing(true)
                         .setContentIntent(contentIntent)  // The intent to send when the entry is clicked
                         .build();

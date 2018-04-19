@@ -17,6 +17,7 @@ import android.widget.CompoundButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.airbnb.lottie.LottieAnimationView;
+import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -29,6 +30,7 @@ import com.techweblearn.www.ftpserver.Service.FtpService;
 import com.techweblearn.www.ftpserver.SettingActivity;
 import com.techweblearn.www.ftpserver.Utils;
 
+import io.fabric.sdk.android.Fabric;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
@@ -54,6 +56,8 @@ public class MainActivity extends AppCompatActivity implements MainActivityViewI
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Fabric.with(this, new Crashlytics());
+
         ftpaddress = findViewById(R.id.ftpaddress);
         ftpstartstop = findViewById(R.id.ftpcontrol);
         relativeLayout = findViewById(R.id.rootlayout);
@@ -65,12 +69,13 @@ public class MainActivity extends AppCompatActivity implements MainActivityViewI
         AdRequest adRequest = new AdRequest.Builder().build();
         adView.loadAd(adRequest);
         mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId(getResources().getString(R.string.interstetialAdId));
+        mInterstitialAd.setAdUnitId(getResources().getString(R.string.interstialTestAd));
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
         mInterstitialAd.setAdListener(new AdListener(){
             @Override
             public void onAdClosed() {
                 super.onAdClosed();
+
                 finish();
             }
         });
@@ -91,33 +96,18 @@ public class MainActivity extends AppCompatActivity implements MainActivityViewI
         mainActivityPresenter.checkFtpIsRunning();
 
         getLocalIpAddress();
-        getMobileIPAddress();
     }
 
     @Override
     public void onClick(View view) {
+
         if (Utils.isMyServiceRunning(FtpService.class, this)) {
             mainActivityPresenter.onftpStartStop();
             return;
         }
 
 
-       /* if(PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getBoolean("isMobile",false))
-        {
-            mainActivityPresenter.onftpStartStop();
-            snackbar=Snackbar.make(relativeLayout, "Ftp is enable Go to About in Setting To see the IP", Snackbar.LENGTH_INDEFINITE)
-                    .setAction("Setting", new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            startActivity(
-                                    new Intent(Settings.ACTION_SETTINGS));
-                        }
-                    });
-            snackbar.show();
 
-            return;
-
-        }*/
 
         if (Utils.isWifiApEnable(MainActivity.this)||Utils.isWifiEnable(MainActivity.this)) {
             Log.d("Kunal","Is Service Running");
@@ -160,10 +150,11 @@ public class MainActivity extends AppCompatActivity implements MainActivityViewI
 
     @Override
     public void ftpServerStopped() {
-        ftpaddress.setText("");
-        ftpstartstop.setText("Start FTP");
         router_animation.setProgress(0f);
         router_animation.pauseAnimation();
+        ftpaddress.setText("");
+        ftpstartstop.setText("Start FTP");
+
     }
 
     @Override
@@ -202,27 +193,6 @@ public class MainActivity extends AppCompatActivity implements MainActivityViewI
             Log.e("IPADDRESS", ex.toString());
         }
         return null;
-    }
-
-
-
-    public static String getMobileIPAddress() {
-
-
-            try {
-                List<NetworkInterface> interfaces = Collections.list(NetworkInterface.getNetworkInterfaces());
-                for (NetworkInterface intf : interfaces) {
-                    Log.d("DISPLAY NAME",intf.getDisplayName());
-                    List<InetAddress> addrs = Collections.list(intf.getInetAddresses());
-                    for (InetAddress addr : addrs) {
-                        if (!addr.isLoopbackAddress()) {
-                            return  addr.getHostAddress();
-                        }
-                    }
-                }
-            } catch (Exception ex) { } // for now eat exceptions
-            return "";
-
     }
 
 
